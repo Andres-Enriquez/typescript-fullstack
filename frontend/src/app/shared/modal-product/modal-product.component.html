@@ -1,0 +1,64 @@
+<!-- Boton para abrir el modal -->
+<button type="button" class="btn btn-primary" (click)="openModal()">
+    Crear Producto
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="productModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="productForm">
+                    <div class="form-floating mb-3">
+                        <!-- Campo de entrada referencia -->
+                        <input type="text" class="form-control" id="textRef"
+                            placeholder="Ingresa la referencia del producto" formControlName="reference"
+                            [class.is-invalid]="referenceNotValid">
+                        <label for="textRef">Referencia</label>
+                        <small *ngIf="referenceNotValid" class="text-danger">
+                            Ingrese la referencia del producto
+                        </small>
+                    </div>
+                    <!-- Campo de entrada descripcion -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="textDesc" placeholder="Descripción del producto"
+                            formControlName="description" [class.is-invalid]="descNotValid">
+                        <label for="textDesc">Descripcion</label>
+                        <small *ngIf="descNotValid" class="text-danger">
+                            Ingrese la descripción del producto
+                        </small>
+                    </div>
+                    <!-- Campo de entrada cantidad -->
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="numCount" placeholder="Ingresa la cantidad"
+                            formControlName="count" [class.is-invalid]="countNotValid">
+                        <label for="numCantidad">Cantidad</label>
+                        <small *ngIf="countNotValid" class="text-danger">
+                            Ingrese la cantidad
+                        </small>
+                    </div>
+                    <!-- Campo de entrada precio -->
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="numPrice" placeholder="Ingresa el precio"
+                            formControlName="price" [class.is-invalid]="priceNotValid">
+                        <label for="numPrice">Precio</label>
+                        <small *ngIf="priceNotValid" class="text-danger">
+                            Ingrese el precio debe tener un valor minimo de $500 pesos
+                        </small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+                <!-- El boton guardar se activa cuando todos los campos del formulario 
+                    estan diligenciados y son validos -->
+                <button type="button" class="btn btn-primary" (click)="saveData()"
+                    [disabled]="!productForm.valid">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

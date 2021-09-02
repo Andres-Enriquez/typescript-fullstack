@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Productos</h5>
+          <div class="d-flex flex-row-reverse">
+            <app-modal-product (newItemProduct)="addProduct($event)"></app-modal-product>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped mt-3">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Referencia</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of listProduct; let i = index;">
+                  <td> {{ i + 1 }}</td>
+                  <td>{{ product.referencia }}</td>
+                  <td>{{ product.descripcion }}</td>
+                  <td>{{ product.cantidad }}</td>
+                  <td>{{ product.precio }}</td>
+                  <td>
+                    <div class="d-flex justify-content-around">
+                      <a style="cursor: pointer;" (click)="updateProduct(product)"><i class="bi-pencil-square" style="font-size: 16px; color: cornflowerblue;"></i></a>
+                      <a style="cursor: pointer;" (click)="deleteProduct(product.id)"><i class="bi-trash" style="font-size: 16px; color: crimson;"></i></a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
